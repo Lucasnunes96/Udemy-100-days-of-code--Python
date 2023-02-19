@@ -35,7 +35,7 @@ compPlay = random.randint(0,2)
 pPlay = int(input("What do you choose? Type 0 for Rock, 1 for Paper or 2 for Scissors.\n"))
 
 if pPlay == compPlay:
-    print(f"{imgs[pPlay]}\nComputer Chose:\n{imgs[compPlay]}\nYou tied")
+    print(f"{imgs[pPlay]}\nComputer Chose:\n{imgs[compPlay]}\nIt\'s a draw")
 elif pPlay == 0 and compPlay == 1:
     print(f"{imgs[pPlay]}\nComputer Chose:\n{imgs[compPlay]}\nYou lose")
 elif pPlay == 0 and compPlay == 2:
