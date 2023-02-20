@@ -2,8 +2,8 @@ import random
 import hangmanWords
 import hangmanArt
 
-# It becomes false after the player run out of lives
-still_alive = True
+# It becomes false after the player run out of lives or wins
+gameRunning = True
 
 # Sets the amount of lives the player starts with
 lives = 5
@@ -20,14 +20,14 @@ for n in chosen_word:
     display += "_"
 
 # Greets the player
-print(f"Welcome to the HaNgMaN game 2000! You start the game with 5 lives.\nGuess the word -> {display}. The word is {chosen_word}")
+print(f"Welcome to the HaNgMaN game 2000! You start the game with 5 lives.\nGuess the word -> {display}.")
 
 #
-while still_alive:
+while gameRunning:
     # Asks the play for a letter
     guess = input("Choose a letter, any letter.")
 
-    # chec
+    # check if the player's guess was correct or not. If it's not, then the player loses one life
     for pos in range(word_length):
         letter = chosen_word[pos]
         if letter == guess:
@@ -37,13 +37,16 @@ while still_alive:
         print(hangmanArt.stages[lives])
         print(f"Wrong letter, try again. You have {lives} lives remaining.")
 
+    # checks if the word is complete
     if "_" not in display:
-        still_alive = False
+        gameRunning = False
         print(f"You won. The word was {chosen_word}.")
         break
+
+    # checks if the player ran out of lives
     if lives <= 0:
-        still_alive = False
-        print("Game over. You lost!")
+        gameRunning = False
+        print(f"Game over. You lost! The right word was {chosen_word}.")
         break
 
     print(display)
