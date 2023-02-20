@@ -45,3 +45,8 @@ for n in range(0, nr_numbers):
 password = "".join(random.sample(password, len(password)))
 print(f"Your password is: {password}")
 
+
+
+
+
+

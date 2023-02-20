@@ -7,3 +7,5 @@ pet = input("What\'s the name of your pet? ")
 #4. Combine the name of their city and pet and show them their band name.
 #5. Make sure the input cursor shows on a new line:
 print(f"The name of your band should be {city} {pet}!\n")
+
+
