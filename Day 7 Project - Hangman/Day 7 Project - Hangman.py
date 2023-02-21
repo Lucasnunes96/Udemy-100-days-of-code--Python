@@ -6,7 +6,7 @@ import hangmanArt
 gameRunning = True
 
 # Sets the amount of lives the player starts with
-lives = 5
+lives = 6
 
 # Chooses a word from an imported list from the hangmanWords module
 chosen_word = random.choice(hangmanWords.word_list)
@@ -19,8 +19,10 @@ display = []
 for n in chosen_word:
     display += "_"
 
+greetingDisplay = ",".join(display).replace(",", " ")
+
 # Greets the player
-print(f"Welcome to the HaNgMaN game 2000! You start the game with 5 lives.\nGuess the word -> {display}.")
+print(f"Welcome to the HaNgMaN game 2000! You start the game with 6 lives.\nGuess the word -> {greetingDisplay} {chosen_word}.")
 
 #
 while gameRunning:
@@ -32,10 +34,19 @@ while gameRunning:
         letter = chosen_word[pos]
         if letter == guess:
             display[pos] = guess
+            print(hangmanArt.stages[lives])
     if guess not in chosen_word:
         lives -= 1
-        print(hangmanArt.stages[lives])
-        print(f"Wrong letter, try again. You have {lives} lives remaining.")
+
+        # checks if the player ran out of lives
+        if lives <= 0:
+            gameRunning = False
+            print(hangmanArt.stages[lives])
+            print(f"Game over. You lost! The right word was {chosen_word}.")
+            break
+        else:
+            print(hangmanArt.stages[lives])
+            print(f"Wrong letter, try again. You have {lives} lives remaining.")
 
     # checks if the word is complete
     if "_" not in display:
@@ -43,11 +54,5 @@ while gameRunning:
         print(f"You won. The word was {chosen_word}.")
         break
 
-    # checks if the player ran out of lives
-    if lives <= 0:
-        gameRunning = False
-        print(f"Game over. You lost! The right word was {chosen_word}.")
-        break
-
-    print(display)
+    print(",".join(display).replace(",", " "))
 
